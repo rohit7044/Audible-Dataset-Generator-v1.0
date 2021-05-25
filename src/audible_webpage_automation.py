@@ -19,13 +19,13 @@ reviews = ""
 final_reviews_list =[]
 book_data_list =[]
 showmore_open_times = 0
-# //div[contains(@class,'Reviews')]/div[1]/div[2]/p[1]
+
 def audible_homepage_open(audible_homepage_link,audible_link,open_times):
     global showmore_open_times
     showmore_open_times = open_times
     chrome_options = Options()
-    chrome_options.add_extension('C:/chropath/extension_6_1_11_0.crx')
-    driver = webdriver.Chrome(executable_path="C:/chromedriver/chromedriver.exe", chrome_options = chrome_options)
+#     chrome_options.add_extension('C:/chropath/extension_6_1_11_0.crx')
+    driver = webdriver.Chrome(executable_path="C:/chromedriver/chromedriver.exe", chrome_options = chrome_options) # set the chromedriver path
     driver.get(audible_homepage_link)
     driver.get(audible_link)
     return click_element(driver)
@@ -35,8 +35,6 @@ def click_element(driver):
     length_of_product_list = len(product_list)
     for item in range (1, length_of_product_list):
         book_link = driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//li[1]//a")
-        # book_link = driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li[3]//li[1]//a")
-        # tab_switch(driver,book_link,item=3)
         tab_switch(driver,book_link,item)
         print("end of "+book_link.text)
     try:
@@ -106,16 +104,12 @@ def reviews_crawler(driver):
                 more_reviews.click()
             time.sleep(5)
             review_list = driver.find_elements_by_xpath("//div[contains(@class,'ReviewsTabUS')]/div/div[2]/p[1]")
-            # reviews = ""
-            for item in range(1, len(review_list)):
-                # driver.execute_script("window.scroll(0, 0);")
-                # reviews = driver.find_element_by_xpath("//div[contains(@class,'ReviewsTabUS')]/div[25]/div[2]/p[1]")
-                # check_review =reviews.text
-                # review_cleaned = reviews.text.replace('\n', '').replace(' \" ', '\"\"')
+            
+            for item in range(1, len(review_list)):                
                 reviews = driver.find_element_by_xpath("//div[contains(@class,'ReviewsTabUS')]/div["+str(item)+"]/div[2]/p[1]")
                 # check_review = reviews.text
                 review_cleaned = re.sub(r'[^a-zA-Z0-9()\[\]\{\}.,!?\' */\"]', "", reviews.text)
-                # .replace("\'","").replace(",","")
+                
                 local_reviews_list.append(review_cleaned)
                 if item == len(review_list)-1:
                     last_item = int(len(review_list))
@@ -140,23 +134,15 @@ def reviews_crawler(driver):
                     reviews = driver.find_element_by_xpath("//div[contains(@class,'ReviewsTabUS')]/div[" + str(last_item) + "]/div[2]/p[1]")
                     review_cleaned = re.sub(r'[^a-zA-Z0-9()\[\]\{\}.,!?\' */\"]', "", reviews.text)
                     local_reviews_list.append(review_cleaned)
-            # try:
-            #     if len(local_reviews_list) == total_review_columns:
-            #         pass
-            #     else:
-            #         for item in range(len(local_reviews_list),total_review_columns):
-            #             local_reviews_list.append(None)
-            # except Exception as e:
-            #     print(e)
-            # print(local_reviews_list)
+           
     return local_reviews_list
 
 def data_not_found(driver,item):
-    # abg = driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//li[1]")
+ 
     book_title = (driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//h3[contains(@class,'heading')]")).text
     try:
         book_subtitle = (driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//li[contains(@class,'subtitle')]")).text
-        # print(book_subtitle)
+        
     except:
         book_subtitle = ""
     book_author = (driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//li[contains(@class,'authorLabel')]//a")).text
