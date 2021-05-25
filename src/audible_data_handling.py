@@ -26,41 +26,26 @@ def write_to_csv(book_data_list,final_reviews_list):
     global final_data_list
     final_data_list = book_data_list + final_reviews_list
     csv_file_path = "output_encoded.csv"
-    # txt_file_path = "output.txt"
-    # size_of_file = os.path.getsize(csv_file_path)
 
     try:
         if os.path.exists(csv_file_path):
             if os.path.getsize(csv_file_path) is 0:
                 csv_file = open(csv_file_path, "w", encoding="utf-8",newline ="")
                 writer = csv.writer(csv_file, delimiter = ",")
-                # quoting = csv.QUOTE_ALL
+                
                 writer.writerow(final_column_data)
-                writer.writerow(final_data_list)
-                # for data in range(len(final_column_data)):
-                #
-                #     writer.writerow([final_column_data[data]])
-
-
-                # for data in range(len(final_data_list)):
-                #
-                #     writer.writerow([final_data_list[data]])
+                writer.writerow(final_data_list)          
             else:
                 csv_file = open(csv_file_path, "a", encoding="utf-8", newline="")
                 writer = csv.writer(csv_file, delimiter=",")
                 writer.writerow(final_data_list)
-                # for data in range(len(final_data_list)):
-                #
-                #     writer.writerow([final_data_list[data]])
+
         else:
             csv_file = open(csv_file_path, "w", encoding="utf-8", newline="")
             writer = csv.writer(csv_file, delimiter=",")
             writer.writerow(final_column_data)
             writer.writerow(final_data_list)
-            # for data in range(len(final_column_data)):
-            #     writer.writerow([final_column_data[data]])
-            # for data in range(len(final_data_list)):
-            #     writer.writerow([final_data_list[data]])
+
         csv_file.close()
     except Exception as e:
         print(e)
