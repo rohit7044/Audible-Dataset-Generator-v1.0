@@ -24,7 +24,7 @@
 - CSV reader (Microsoft Excel,etc..)
 - IDE ([PyCharm](https://www.jetbrains.com/pycharm/download/#section=windows))
 # Optional Requirements
-- [Chropath](https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo).For finding specific xpath if needed.
+- [Chropath](https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo) For finding specific xpath if needed.
 # Installation
 Please go through the installations as stated in the requirements list above.
 Set the python path and chromedriver path as well. I am not using virtual environments(not a fan of 🐍)
