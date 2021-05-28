@@ -9,7 +9,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/rohit7044/Audible-Dataset-Generator-v1.0)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/network)
 [![GitHub stars](https://img.shields.io/github/stars/rohit7044/Audible-Dataset-Generator-v1.0)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/rohit7044/Audible-Dataset-Generator-v1.0)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/issues)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/graphs/commit-activity)
 
 [![Stargazers repo roster for @rohit7044/Audible-Dataset-Generator-v1.0](https://reporoster.com/stars/rohit7044/Audible-Dataset-Generator-v1.0)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/stargazers)
 [![Forkers repo roster for @rohit7044/Audible-Dataset-Generator-v1.0](https://reporoster.com/forks/rohit7044/Audible-Dataset-Generator-v1.0)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/network/members)
@@ -39,3 +39,4 @@ Click this badge for the process demo 🔭 [![Workflow Video](https://img.shield
 - The csv file is encoded in utf-8
 - Unfortunately this version(1.0) has no pause button nor multithreading, So the iteration of 1200 books or above will take some significant amount of time and if stopped it will again iterate from beginning, duplicating files into csv.
 - I have not tested the iteration over 1200 books, So any issue please ping me up.
+# No Future Releases are coming up
