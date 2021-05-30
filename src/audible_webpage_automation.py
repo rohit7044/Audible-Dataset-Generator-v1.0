@@ -4,7 +4,7 @@ import re
 import audible_data_handling as adh
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-# from selenium.webdriver.support import expected_conditions as EC
+
 from selenium.webdriver.chrome.options import Options
 
 book_title = ""
@@ -24,8 +24,8 @@ def audible_homepage_open(audible_homepage_link,audible_link,open_times):
     global showmore_open_times
     showmore_open_times = open_times
     chrome_options = Options()
-#     chrome_options.add_extension('C:/chropath/extension_6_1_11_0.crx')
-    driver = webdriver.Chrome(executable_path="C:/chromedriver/chromedriver.exe", chrome_options = chrome_options) # set the chromedriver path
+    chrome_options.add_extension('C:/chropath/extension_6_1_11_0.crx')
+    driver = webdriver.Chrome(executable_path="C:/chromedriver/chromedriver.exe", chrome_options = chrome_options)
     driver.get(audible_homepage_link)
     driver.get(audible_link)
     return click_element(driver)
@@ -35,6 +35,8 @@ def click_element(driver):
     length_of_product_list = len(product_list)
     for item in range (1, length_of_product_list):
         book_link = driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//li[1]//a")
+        # book_link = driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li[10]//li[1]//a")
+        # tab_switch(driver,book_link,item=10)
         tab_switch(driver,book_link,item)
         print("end of "+book_link.text)
     try:
@@ -76,10 +78,17 @@ def fetch_element_data(driver,item):
 
         except:
             rating = ""
+        try:
+            total_ratings = (driver.find_element_by_xpath("//div[contains(@class,'centerSlot')][2]/div//li[contains(@class,'ratingsLabel')]")).text
+            final_string = re.search(r'\((.*?)\)', total_ratings)
+            ratings_cleaned = re.sub(r'[^0-9]', "", final_string.group(1))
+        except:
+            # total_ratings = ""
+            ratings_cleaned = ""
         book_price = (driver.find_element_by_xpath("//a[contains(@title,"+"\""+book_title+"\""+")]")).text
         p_audio_runtime,p_book_price = adh.data_preprocessing(audio_runtime,book_price)
         final_reviews_list = reviews_crawler(driver)
-        book_data_list = [book_title, book_subtitle, book_author,book_narrator, p_audio_runtime,audiobook_type, categories, rating,p_book_price]
+        book_data_list = [book_title, book_subtitle, book_author,book_narrator, p_audio_runtime,audiobook_type, categories, rating,ratings_cleaned,p_book_price]
         adh.write_to_csv(book_data_list,final_reviews_list)
         tab_close(driver)
     except:
@@ -104,12 +113,9 @@ def reviews_crawler(driver):
                 more_reviews.click()
             time.sleep(5)
             review_list = driver.find_elements_by_xpath("//div[contains(@class,'ReviewsTabUS')]/div/div[2]/p[1]")
-            
-            for item in range(1, len(review_list)):                
+            for item in range(1, len(review_list)):
                 reviews = driver.find_element_by_xpath("//div[contains(@class,'ReviewsTabUS')]/div["+str(item)+"]/div[2]/p[1]")
-                # check_review = reviews.text
                 review_cleaned = re.sub(r'[^a-zA-Z0-9()\[\]\{\}.,!?\' */\"]', "", reviews.text)
-                
                 local_reviews_list.append(review_cleaned)
                 if item == len(review_list)-1:
                     last_item = int(len(review_list))
@@ -134,15 +140,15 @@ def reviews_crawler(driver):
                     reviews = driver.find_element_by_xpath("//div[contains(@class,'ReviewsTabUS')]/div[" + str(last_item) + "]/div[2]/p[1]")
                     review_cleaned = re.sub(r'[^a-zA-Z0-9()\[\]\{\}.,!?\' */\"]', "", reviews.text)
                     local_reviews_list.append(review_cleaned)
-           
+
     return local_reviews_list
 
 def data_not_found(driver,item):
- 
+
     book_title = (driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//h3[contains(@class,'heading')]")).text
     try:
         book_subtitle = (driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//li[contains(@class,'subtitle')]")).text
-        
+        # print(book_subtitle)
     except:
         book_subtitle = ""
     book_author = (driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//li[contains(@class,'authorLabel')]//a")).text
@@ -157,9 +163,15 @@ def data_not_found(driver,item):
         rating = (driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//li[contains(@class,'ratingsLabel')]/span[1]")).text
     except:
         rating = ""
+    try:
+        total_ratings = (driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//li[contains(@class,'ratingsLabel')]/span[1]")).text
+        ratings_cleaned = re.sub(r'[^0-9]', "", total_ratings)
+    except:
+        # total_ratings = ""
+        ratings_cleaned = ""
     book_price = (driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//div[contains(@class,'BuyBox')]/p[1]")).text
     p_audio_runtime, p_book_price = adh.data_preprocessing(audio_runtime, book_price)
-    book_data_list = [book_title, book_subtitle, book_author,book_narrator, p_audio_runtime,audiobook_type, categories, rating,p_book_price]
+    book_data_list = [book_title, book_subtitle, book_author,book_narrator, p_audio_runtime,audiobook_type, categories, rating,ratings_cleaned,p_book_price]
 
     return book_data_list
 
