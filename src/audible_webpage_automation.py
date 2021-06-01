@@ -35,14 +35,15 @@ def click_element(driver):
     length_of_product_list = len(product_list)
     for item in range (1, length_of_product_list):
         book_link = driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li["+str(item)+"]//li[1]//a")
-        # book_link = driver.find_element_by_xpath("//div[contains(@data-widget,'productList')]/li[10]//li[1]//a")
-        # tab_switch(driver,book_link,item=10)
         tab_switch(driver,book_link,item)
         print("end of "+book_link.text)
     try:
         nextButton = driver.find_element_by_xpath("//span[contains(@class,'nextButton')]")
-        nextButton.click()
-        click_element(driver)
+        if nextButton.is_enabled():
+            nextButton.click()
+            click_element(driver)
+        else:
+            print("End of List")
     except:
         print("End of list")
 
