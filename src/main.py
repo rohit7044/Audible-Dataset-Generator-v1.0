@@ -12,3 +12,10 @@ audible_all_categories_relevance_link = "https://www.audible.com/search?pf_rd_p=
 showmore_open_times = 10
 if __name__ == "__main__":
    awa.audible_homepage_open(audible_homepage_link,audible_all_categories_relevance_link,showmore_open_times)
+   awa.audible_homepage_open(audible_homepage_link, audible_newest_arrival_link, showmore_open_times)
+   awa.audible_homepage_open(audible_homepage_link, audible_best_selling_link, showmore_open_times)
+   awa.audible_homepage_open(audible_homepage_link, audible_title_link, showmore_open_times)
+   awa.audible_homepage_open(audible_homepage_link, audible_running_time_link, showmore_open_times)
+   awa.audible_homepage_open(audible_homepage_link, audible_average_customer_review_link, showmore_open_times)
+   awa.audible_homepage_open(audible_homepage_link, audible_bestseller_link, showmore_open_times)
+   adh.duplicate_remover()
