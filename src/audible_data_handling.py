@@ -64,4 +64,14 @@ def review_column_creator(review_list):
                 book_review_columns.append("Review"+str(item+1))
         final_column_data = book_data_columns + book_review_columns
     return
+def duplicate_remover():
+    input_file_name = "output_encoded.csv"
+    output_file_name = "Audible_Dataset_final.csv"
 
+    with open(input_file_name, 'r', encoding="utf-8") as in_file, open(output_file_name, 'w', encoding="utf-8") as out_file:
+        seen = set()  # set for fast O(1) amortized lookup
+        for line in in_file:
+            if line not in seen:
+                seen.add(line)
+                out_file.write(line)
+    print("End of Program")
