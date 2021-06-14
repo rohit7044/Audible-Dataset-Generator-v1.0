@@ -11,7 +11,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/rohit7044/Audible-Dataset-Generator-v1.0)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/rohit7044/Audible-Dataset-Generator-v1.0)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/issues)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/graphs/commit-activity)
-[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/rohit7044/ama) 
+
 
 [![Stargazers repo roster for @rohit7044/Audible-Dataset-Generator-v1.0](https://reporoster.com/stars/rohit7044/Audible-Dataset-Generator-v1.0)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/stargazers)
 [![Forkers repo roster for @rohit7044/Audible-Dataset-Generator-v1.0](https://reporoster.com/forks/rohit7044/Audible-Dataset-Generator-v1.0)](https://github.com/rohit7044/Audible-Dataset-Generator-v1.0/network/members)
