@@ -28,7 +28,7 @@
 - [Chropath](https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo).For finding specific xpath if needed.
 # Installation
 Please go through the installations as stated in the requirements list above.
-Set the python path and chromedriver path as well. I am not using virtual environments(not a fan of ?)
+Set the python path and chromedriver path as well. I am not using virtual environments(not a fan of 🐍)
 
 # FlowChart
 ![Flowchart](https://lucid.app/publicSegments/view/7d5f80b0-4a80-47f4-bf08-1a83357af28d/image.jpeg)
