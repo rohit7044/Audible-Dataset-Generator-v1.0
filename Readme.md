@@ -1,6 +1,6 @@
 # Audible Dataset Generator v1.0
 ## Web Scraper using Selenium and Python to fetch audiobook details and required reviews for user from www.audible.com and convert to csv
-# Dataset [Link](https://www.kaggle.com/rohitdass/audible-dataset) Updated on 02-06-2021
+# Dataset [Link](https://www.kaggle.com/rohitdass/audible-dataset) Updated on 14-06-2021
 ### Created on May 2021
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
